@@ -1,4 +1,4 @@
-import { Colors, spacings, typography } from '../constants/theme'
+import { border, Colors, spacings, typography } from '../constants/theme'
 
 export function useTheme() {
   const colorScheme = 'light'
@@ -7,5 +7,6 @@ export function useTheme() {
     colors: Colors[colorScheme],
     spacings,
     typography,
+    border,
   }
 }

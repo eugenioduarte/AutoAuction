@@ -1,11 +1,17 @@
 export const Colors = {
   light: {
     text: '#33323C',
+    light_text: '#ECEDF2',
     background: '#ECEDF2',
     primary: '#FF7A30',
     secondary: '#FEEAEA',
     tertiary: '#465C88',
   },
+}
+
+export const border = {
+  size: 1,
+  radius: 8,
 }
 
 export const spacings = {

@@ -1,20 +1,22 @@
+import {
+  Button,
+  HeaderDetails,
+  ImageCar,
+  ViewContainer,
+} from '@/src/components'
 import { useTheme } from '@/src/hooks/useTheme'
 import React from 'react'
-import { Text, View } from 'react-native'
 
+import VehiclesDetailsDescriptions from './components/VehiclesDetailsDescriptions'
 const VehiclesDetailsScreen = () => {
   const { colors, spacings, typography } = useTheme()
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: colors.primary,
-      }}
-    >
-      <Text>VehiclesDetailsScreen</Text>
-    </View>
+    <ViewContainer>
+      <HeaderDetails />
+      <ImageCar />
+      <VehiclesDetailsDescriptions />
+      <Button />
+    </ViewContainer>
   )
 }
 
