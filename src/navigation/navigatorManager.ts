@@ -1,20 +1,16 @@
-import {
-  createNavigationContainerRef,
-  DrawerActions,
-} from '@react-navigation/native'
-import { NavigationScreenName } from './Navigation'
-
-export const navigationRef = createNavigationContainerRef()
+import { DrawerActions } from '@react-navigation/native'
+import { navigationRef } from './navigationRef'
+import { NavigationScreenName } from './screens'
 
 export const navigatorManager = {
   goToVehiclesListScreen: () => {
     if (navigationRef.isReady()) {
-      navigationRef.navigate(NavigationScreenName.VehiclesList as never)
+      navigationRef.navigate(NavigationScreenName.VehiclesList)
     }
   },
   goToVehiclesDetailsScreen: () => {
     if (navigationRef.isReady()) {
-      navigationRef.navigate(NavigationScreenName.VehiclesDetails as never)
+      navigationRef.navigate(NavigationScreenName.VehiclesDetails)
     }
   },
   goBack: () => {

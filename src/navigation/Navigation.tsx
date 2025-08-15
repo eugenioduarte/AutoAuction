@@ -4,9 +4,11 @@ import {
   createNativeStackNavigator,
   NativeStackNavigationOptions,
 } from '@react-navigation/native-stack'
+import React from 'react'
 import VehiclesDetailsScreen from '../screens/vehiclesDetailsScreen/VehiclesDetailsScreen'
 import VehiclesListScreen from '../screens/vehiclesListScreen/VehiclesListScreen'
-import { navigationRef } from './navigatorManager'
+import { navigationRef } from './navigationRef'
+import { NavigationScreenName } from './screens'
 
 const Stack = createNativeStackNavigator()
 const Drawer = createDrawerNavigator()
@@ -20,18 +22,12 @@ const stackModalOptions: NativeStackNavigationOptions = {
   animation: 'slide_from_bottom',
 }
 
-export const NavigationScreenName = {
-  VehiclesList: 'VehiclesList',
-  VehiclesDetails: 'VehiclesDetails',
-}
-
 function VehiclesStack() {
   return (
     <Stack.Navigator screenOptions={stackOptionHeaderOff}>
       <Stack.Screen
         name={NavigationScreenName.VehiclesList}
         component={VehiclesListScreen}
-        options={stackOptionHeaderOff}
       />
       <Stack.Screen
         name={NavigationScreenName.VehiclesDetails}
@@ -50,11 +46,6 @@ export default function Navigation() {
           name="Home"
           component={VehiclesStack}
           options={{ title: 'Veículos' }}
-        />
-        <Drawer.Screen
-          name="Settings"
-          component={() => null}
-          options={{ title: 'Configurações' }}
         />
       </Drawer.Navigator>
     </NavigationContainer>
