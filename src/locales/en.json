@@ -29,5 +29,9 @@
     "applyFilters": "Apply Filters",
     "min": "Min",
     "max": "Max"
+  },
+  "searchFilterContainer": {
+    "searchVehicles": "Search vehicles by model",
+    "modelNotFound": "Model not found"
   }
 }

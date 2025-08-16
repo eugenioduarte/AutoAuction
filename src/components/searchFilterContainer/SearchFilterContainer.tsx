@@ -1,40 +1,59 @@
 import { FilterIcon } from '@/assets/icons'
 import { sizes } from '@/src/constants/sizes'
+import { useTheme } from '@/src/hooks/useTheme'
+import { t } from '@/src/locales'
+import { Theme } from '@/src/types/theme.type'
 import React from 'react'
-import { TextInput, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
+import { useVehiclesStore } from '../../store/vehicles.store'
 import Button from '../button/Button'
 import { BUTTON_VARIANT } from '../button/button.types'
 import FilterBSheet from '../modals/FilterBSheet'
+import Text from '../text/Text'
+import TextInput from '../textInput/TextInput'
 
 const SearchFilterContainer = () => {
+  const theme = useTheme()
+  const styles = styleData(theme)
   const [filterModalVisible, setFilterModalVisible] = React.useState(false)
+  const { items, setFilteredItems } = useVehiclesStore()
+  const [hasResultWasNotFound, setHasResultWasNotFound] = React.useState(false)
 
   const handleFilterPress = () => {
     setFilterModalVisible(!filterModalVisible)
   }
 
+  const handleSearchChange = React.useCallback(
+    (text: string) => {
+      if (text.length < 2) {
+        setFilteredItems(items)
+        setHasResultWasNotFound(false)
+        return
+      }
+      const filtered = items.filter((item) =>
+        item.model.toLowerCase().includes(text.toLowerCase()),
+      )
+      setHasResultWasNotFound(filtered.length === 0)
+      setFilteredItems(filtered)
+    },
+    [items, setFilteredItems],
+  )
+
   return (
-    <View
-      style={{
-        marginVertical: 10,
-        flexDirection: 'row',
-        alignItems: 'center',
-      }}
-    >
-      <TextInput
-        placeholder="Search vehicles..."
-        style={{
-          height: 40,
-          borderColor: 'gray',
-          borderWidth: 1,
-          paddingHorizontal: 10,
-          borderRadius: 5,
-          flex: 1,
-        }}
-      />
+    <View style={styles.container}>
+      <View style={styles.textInputContainer}>
+        <TextInput
+          placeholder={t('searchFilterContainer.searchVehicles')}
+          onChangeText={handleSearchChange}
+          style={styles.textInput}
+        />
+        <Text variant="bodySmall" style={styles.textResultNotFound}>
+          {hasResultWasNotFound ? t('searchFilterContainer.modelNotFound') : ''}
+        </Text>
+      </View>
 
       <Button
-        style={{ marginLeft: 10 }}
+        style={styles.button}
         variant={BUTTON_VARIANT.text}
         onPress={handleFilterPress}
       >
@@ -52,3 +71,23 @@ const SearchFilterContainer = () => {
 }
 
 export default SearchFilterContainer
+
+const styleData = (theme: Theme) =>
+  StyleSheet.create({
+    container: {
+      marginTop: theme.spacings.small,
+      flexDirection: 'row',
+      alignItems: 'flex-start',
+      marginBottom: theme.spacings.medium,
+    },
+    textInputContainer: {
+      flex: 1,
+      marginBottom: theme.spacings.medium,
+    },
+    textInput: { minHeight: 40 },
+    textResultNotFound: {
+      marginTop: theme.spacings.xSmall,
+      color: theme.colors.warning_text,
+    },
+    button: { marginLeft: theme.spacings.xSmall },
+  })

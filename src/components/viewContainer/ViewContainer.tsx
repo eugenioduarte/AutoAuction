@@ -1,5 +1,5 @@
 import { useTheme } from '@/src/hooks/useTheme'
-import { UIThemeType } from '@/src/types/types'
+import { Theme } from '@/src/types/theme.type'
 import React from 'react'
 import { StyleSheet } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -16,7 +16,7 @@ const ViewContainer = ({ children }: { children: React.ReactNode }) => {
 
 export default ViewContainer
 
-const styleData = (theme: UIThemeType) =>
+const styleData = (theme: Theme) =>
   StyleSheet.create({
     container: {
       flex: 1,

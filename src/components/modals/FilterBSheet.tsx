@@ -320,7 +320,7 @@ export default FilterBSheet
 
 const getStyles = (theme: Theme) =>
   StyleSheet.create({
-    backdrop: { flex: 1, backgroundColor: theme.colors.background_color_modal },
+    backdrop: { flex: 1 },
     button: { flex: 1 },
     chipContainer: {
       flexDirection: 'row',

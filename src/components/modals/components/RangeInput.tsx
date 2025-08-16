@@ -1,8 +1,9 @@
 import { useTheme } from '@/src/hooks/useTheme'
 import { Theme } from '@/src/types/theme.type'
 import React from 'react'
-import { StyleSheet, TextInput, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 
+import TextInput from '../../textInput/TextInput'
 import Section from './Section'
 
 const RangeInput = ({
@@ -42,17 +43,14 @@ export default RangeInput
 
 const getStyles = (theme: Theme) =>
   StyleSheet.create({
-    section: { marginBottom: 20 },
-    label: { fontSize: 16, fontWeight: '600', marginBottom: 8 },
-    row: { flexDirection: 'row', gap: 10 },
+    section: { marginBottom: theme.spacings.medium },
+    row: { flexDirection: 'row', gap: theme.spacings.small },
     input: {
       flex: 1,
-      borderWidth: 1,
-      borderColor: '#ccc',
-      borderRadius: 8,
-      paddingHorizontal: 10,
-      paddingVertical: 8,
-      fontSize: 14,
     },
-    chipContainer: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
+    chipContainer: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      gap: theme.spacings.small,
+    },
   })
