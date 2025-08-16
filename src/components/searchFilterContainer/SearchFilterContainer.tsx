@@ -18,8 +18,12 @@ const SearchFilterContainer = () => {
   const [filterModalVisible, setFilterModalVisible] = React.useState(false)
   const { items, setFilteredItems } = useVehiclesStore()
   const [hasResultWasNotFound, setHasResultWasNotFound] = React.useState(false)
+  const [searchText, setSearchText] = React.useState('')
 
   const handleFilterPress = () => {
+    setHasResultWasNotFound(false)
+    setSearchText('')
+    setFilteredItems(items)
     setFilterModalVisible(!filterModalVisible)
   }
 
@@ -44,7 +48,11 @@ const SearchFilterContainer = () => {
       <View style={styles.textInputContainer}>
         <TextInput
           placeholder={t('searchFilterContainer.searchVehicles')}
-          onChangeText={handleSearchChange}
+          onChangeText={(text) => {
+            setSearchText(text)
+            handleSearchChange(text)
+          }}
+          value={searchText}
           style={styles.textInput}
         />
         <Text variant="bodySmall" style={styles.textResultNotFound}>
@@ -78,7 +86,9 @@ const styleData = (theme: Theme) =>
       marginTop: theme.spacings.small,
       flexDirection: 'row',
       alignItems: 'flex-start',
-      marginBottom: theme.spacings.medium,
+      paddingBottom: theme.spacings.small,
+      borderBottomColor: theme.colors.primary,
+      borderBottomWidth: 1,
     },
     textInputContainer: {
       flex: 1,
