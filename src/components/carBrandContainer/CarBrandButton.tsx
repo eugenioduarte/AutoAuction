@@ -42,6 +42,7 @@ const CarBrandButton = ({ brand, isSelected, onPress }: BrandButtonProps) => {
 
   return (
     <TouchableOpacity
+      testID={`brand-button-${brand}`}
       style={[styles.base, isSelected && styles.selected]}
       onPress={onPress}
       activeOpacity={1}
