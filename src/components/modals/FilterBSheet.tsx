@@ -48,6 +48,8 @@ const FilterBSheet = ({ visible, setVisible }: FilterBSheetProps) => {
     model: t('filterBSheet.model'),
     filter: t('filterBSheet.filter'),
     close: t('common.close'),
+    favourites: t('filterBSheet.favourites'),
+    onlyFavourites: t('filterBSheet.onlyFavourites'),
   }
 
   const brands = useMemo(
@@ -86,6 +88,9 @@ const FilterBSheet = ({ visible, setVisible }: FilterBSheetProps) => {
   const handleApplyFilters = () => {
     let filtered = items
 
+    if (state.onlyFavourites) {
+      filtered = filtered.filter((v) => v.favourite)
+    }
     if (state.selectedMake)
       filtered = filtered.filter((v) => v.make === state.selectedMake)
     if (state.selectedModel)
@@ -188,6 +193,21 @@ const FilterBSheet = ({ visible, setVisible }: FilterBSheetProps) => {
                 </Button>
               </View>
 
+              <Section title={t('filterBSheet.favourites')}>
+                <View style={styles.chipContainer}>
+                  <Chip
+                    key="favorites"
+                    label={t('filterBSheet.onlyFavourites')}
+                    selected={state.onlyFavourites}
+                    onPress={() =>
+                      dispatch({
+                        type: 'SET_ONLY_FAVOURITES',
+                        payload: !state.onlyFavourites,
+                      })
+                    }
+                  />
+                </View>
+              </Section>
               <Section title={translations.make}>
                 <View style={styles.chipContainer}>
                   {brands.map((brand) => (

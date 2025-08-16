@@ -28,10 +28,26 @@
     "clearFilters": "Clear Filters",
     "applyFilters": "Apply Filters",
     "min": "Min",
-    "max": "Max"
+    "max": "Max",
+    "onlyFavourites": "Only Favourites",
+    "favourites": "Favourites"
   },
   "searchFilterContainer": {
     "searchVehicles": "Search vehicles by model",
     "modelNotFound": "Model not found"
+  },
+  "VehiclesDetailsDescriptionsAuctionContainer": {
+    "auctionStatus": "Auction Status",
+    "startingBid": "Starting Bid",
+    "bidNow": "Make a Bid",
+    "bidEnded": "Auction Ended"
+  },
+  "HeaderDetails": {
+    "addToFavorites": "Add to favorites",
+    "removeFromFavorites": "Remove from favorites"
+  },
+  "auction": {
+    "endsInSimple": "Ends in: {{days}}d {{hours}}h {{minutes}}m",
+    "endedSimple": "Ended: {{days}}d {{hours}}h {{minutes}}m ago"
   }
 }

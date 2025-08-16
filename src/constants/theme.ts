@@ -10,6 +10,7 @@ export const Colors = {
     background_color_modal: 'rgba(0,0,0,0.1)',
     grey: '#B0B0B0',
     warning_text: '#f25d4cff',
+    disabled: '#dededeff',
   },
 }
 

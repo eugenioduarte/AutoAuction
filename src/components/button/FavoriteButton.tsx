@@ -14,13 +14,18 @@ const FavoriteButton = ({ vehicleId }: { vehicleId: string }) => {
   const styles = getStyles(theme, isFavorite)
   const { toggleFavourite } = useVehiclesStore()
 
-  const handleAddToFavorites = () => {
+  const handleAddToFavourites = () => {
     toggleFavourite(vehicleId)
   }
 
   return (
-    <View style={styles.container} onTouchEnd={handleAddToFavorites}>
-      <FavoriteIcon width={20} height={20} />
+    <View style={styles.container} onTouchEnd={handleAddToFavourites}>
+      <FavoriteIcon
+        width={20}
+        height={20}
+        stroke={isFavorite ? theme.colors.surface : theme.colors.text}
+        strokeWidth={2}
+      />
     </View>
   )
 }

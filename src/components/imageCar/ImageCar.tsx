@@ -5,7 +5,16 @@ import { Theme } from '@/src/types/theme.type'
 import React from 'react'
 import { Image, StyleSheet } from 'react-native'
 
-const ImageCar = () => {
+type ImageCarProps = {
+  width?: number
+  height?: number
+}
+
+const ImageCar = ({
+  width = sizes.IMAGE_CAR_SIZE,
+  height = sizes.IMAGE_CAR_SIZE,
+  style,
+}: ImageCarProps & { style?: object }) => {
   const theme = useTheme()
   const styles = getStyles(theme)
 
@@ -14,7 +23,7 @@ const ImageCar = () => {
       source={{
         uri: placeholders.CAR_PLACEHOLDER_IMAGE,
       }}
-      style={styles.carImage}
+      style={[styles.carImage, { width, height }, style]}
       resizeMode="cover"
     />
   )
@@ -25,8 +34,6 @@ export default ImageCar
 const getStyles = ({ spacings, border }: Theme) =>
   StyleSheet.create({
     carImage: {
-      width: sizes.IMAGE_CAR_SIZE,
-      height: sizes.IMAGE_CAR_SIZE,
       marginRight: spacings.small,
       borderRadius: border.radius,
     },

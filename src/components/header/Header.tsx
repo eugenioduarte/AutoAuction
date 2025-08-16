@@ -51,6 +51,8 @@ const Header = () => {
         <FavoriteIcon
           width={sizes.ICON_SIZE_DEFAULT}
           height={sizes.ICON_SIZE_DEFAULT}
+          stroke={theme.colors.primary}
+          strokeWidth={2}
         />
       </Button>
     </View>

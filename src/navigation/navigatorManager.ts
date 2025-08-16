@@ -2,6 +2,11 @@ import { DrawerActions } from '@react-navigation/native'
 import { navigationRef } from './navigationRef'
 import { NavigationScreenName } from './screens'
 
+export type RootStackParamList = {
+  VehiclesList: undefined
+  VehiclesDetails: { id: string }
+}
+
 export const navigatorManager = {
   goToVehiclesListScreen: () => {
     if (navigationRef.isReady()) {
@@ -10,7 +15,9 @@ export const navigatorManager = {
   },
   goToVehiclesDetailsScreen: ({ id }: { id: string }) => {
     if (navigationRef.isReady()) {
-      navigationRef.navigate(NavigationScreenName.VehiclesDetails)
+      navigationRef.navigate(NavigationScreenName.VehiclesDetails, {
+        id,
+      })
     }
   },
   goBack: () => {

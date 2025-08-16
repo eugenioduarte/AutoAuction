@@ -1,6 +1,8 @@
 import { useTheme } from '@/src/hooks/useTheme'
+import { Theme } from '@/src/types/theme.type'
 import React from 'react'
-import { StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { StyleSheet, TouchableOpacity } from 'react-native'
+import Text from '../text/Text'
 import { ButtonProps } from './button.types'
 
 const Button = ({
@@ -8,22 +10,34 @@ const Button = ({
   style,
   children,
   textProps,
+  disabled,
   ...touchableProps
 }: ButtonProps) => {
-  const { colors, spacings, typography } = useTheme()
-  const styles = getStyles({ colors, spacings, typography })
+  const theme = useTheme()
+  const styles = getStyles(theme)
 
   const isTextChild =
     typeof children === 'string' || typeof children === 'number'
 
   return (
     <TouchableOpacity
-      style={[styles.base, style, styles[variant]]}
+      disabled={disabled}
+      style={[
+        styles.base,
+        style,
+        styles[variant],
+        disabled && styles.buttonDisabled,
+      ]}
       {...touchableProps}
     >
       {isTextChild ? (
         <Text
-          style={[styles.textBase, styles[`text_${variant}`], textProps?.style]}
+          variant="titleMedium"
+          style={[
+            styles[`text_${variant}`],
+            textProps?.style,
+            disabled && styles.textDisabled,
+          ]}
           {...textProps}
         >
           {children}
@@ -37,37 +51,40 @@ const Button = ({
 
 export default Button
 
-const getStyles = ({ colors, spacings, typography }: any) =>
+const getStyles = (theme: Theme) =>
   StyleSheet.create({
     base: {
-      paddingVertical: spacings.small,
-      paddingHorizontal: spacings.medium,
-      borderRadius: spacings.small,
+      paddingVertical: theme.spacings.small,
+      paddingHorizontal: theme.spacings.medium,
+      borderRadius: theme.spacings.small,
       alignItems: 'center',
       justifyContent: 'center',
     },
     filled: {
-      backgroundColor: colors.primary,
+      backgroundColor: theme.colors.primary,
     },
     outline: {
       borderWidth: 1,
-      borderColor: colors.primary,
+      borderColor: theme.colors.primary,
       backgroundColor: 'transparent',
     },
     text: {
       backgroundColor: 'transparent',
     },
-    textBase: {
-      ...typography.bodyLarge,
-    },
     text_filled: {
-      color: colors.light_text,
+      color: theme.colors.light_text,
     },
     text_outline: {
-      color: colors.primary,
+      color: theme.colors.primary,
     },
     text_text: {
-      color: colors.primary,
+      color: theme.colors.primary,
       textDecorationLine: 'underline',
+    },
+    buttonDisabled: {
+      backgroundColor: theme.colors.disabled,
+    },
+    textDisabled: {
+      color: theme.colors.text,
     },
   })

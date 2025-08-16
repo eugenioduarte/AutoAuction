@@ -25,3 +25,28 @@ export function getAuctionTimeLeft(auctionDateTime: string) {
   if (hours > 0) return `${hours}h ${minutes}m`
   return `${minutes}m`
 }
+
+export function getAuctionStatusText(auctionDateTime: string): string {
+  const auctionDate = parse(auctionDateTime, 'yyyy/MM/dd HH:mm:ss', new Date())
+  const now = new Date()
+
+  const minutesDiff = differenceInMinutes(auctionDate, now)
+  const absMinutes = Math.abs(minutesDiff)
+
+  const days = Math.floor(absMinutes / (60 * 24))
+  const hours = Math.floor((absMinutes % (60 * 24)) / 60)
+  const minutes = absMinutes % 60
+
+  if (minutesDiff > 0) {
+    return t('auction.endsInSimple', { days, hours, minutes })
+  } else {
+    return t('auction.endedSimple', { days, hours, minutes })
+  }
+}
+
+export function isAuctionEnded(auctionDateTime: string): boolean {
+  const auctionDate = parse(auctionDateTime, 'yyyy/MM/dd HH:mm:ss', new Date())
+  const now = new Date()
+
+  return differenceInMinutes(auctionDate, now) <= 0
+}

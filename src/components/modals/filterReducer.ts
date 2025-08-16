@@ -7,6 +7,7 @@ type FilterState = {
   mileageRange: [string, string]
   auctionDateRange: [string, string]
   startingBidRange: [string, string]
+  onlyFavourites: boolean
 }
 
 type FilterAction =
@@ -18,6 +19,7 @@ type FilterAction =
   | { type: 'SET_MILEAGE'; payload: [string, string] }
   | { type: 'SET_AUCTION_DATE'; payload: [string, string] }
   | { type: 'SET_STARTING_BID'; payload: [string, string] }
+  | { type: 'SET_ONLY_FAVOURITES'; payload: boolean }
   | { type: 'RESET' }
 
 const initialFilterState: FilterState = {
@@ -29,6 +31,7 @@ const initialFilterState: FilterState = {
   mileageRange: ['', ''],
   auctionDateRange: ['', ''],
   startingBidRange: ['', ''],
+  onlyFavourites: false,
 }
 
 function filterReducer(state: FilterState, action: FilterAction): FilterState {
@@ -49,6 +52,8 @@ function filterReducer(state: FilterState, action: FilterAction): FilterState {
       return { ...state, auctionDateRange: action.payload }
     case 'SET_STARTING_BID':
       return { ...state, startingBidRange: action.payload }
+    case 'SET_ONLY_FAVOURITES':
+      return { ...state, onlyFavourites: action.payload }
     case 'RESET':
       return initialFilterState
     default:
