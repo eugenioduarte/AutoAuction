@@ -1,7 +1,7 @@
 import { useTheme } from '@/src/hooks/useTheme'
 import { Theme } from '@/src/types/theme.type'
 import { brands } from '@/src/types/vehicle.type'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { useVehiclesStore } from '../../store/vehicles.store'
 import CarBrandButton from './CarBrandButton'
@@ -9,8 +9,14 @@ import CarBrandButton from './CarBrandButton'
 const CarBrandContainer = () => {
   const theme = useTheme()
   const styles = getStyles(theme)
-  const { items, setFilteredItems } = useVehiclesStore()
+  const { items, filteredItems, setFilteredItems } = useVehiclesStore()
   const [selectedBrand, setSelectedBrand] = React.useState<string | null>(null)
+
+  useEffect(() => {
+    const brand = filteredItems.map((item) => item.make)
+    const uniqueBrands = Array.from(new Set(brand))
+    setSelectedBrand(uniqueBrands.length === 1 ? uniqueBrands[0] : null)
+  }, [filteredItems])
 
   const handleBrandPress = (brand: string) => {
     const isSameBrand = selectedBrand === brand
