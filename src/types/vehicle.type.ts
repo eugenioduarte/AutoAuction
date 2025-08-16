@@ -12,3 +12,14 @@ export interface Vehicle {
   fuel: FuelType
   favourite?: boolean
 }
+
+export const brands = [
+  'Audi',
+  'BMW',
+  'Citroen',
+  'Ford',
+  'Mercedes-Benz',
+  'Toyota',
+  'Volkswagen',
+  'Volvo',
+]

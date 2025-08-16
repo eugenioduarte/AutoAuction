@@ -1,12 +1,12 @@
 /* eslint-env jest */
 /* global jest */
-// jest.setup.js
+import mockAsyncStorage from '@react-native-async-storage/async-storage/jest/async-storage-mock'
+
 require('@testing-library/jest-native/extend-expect')
 
 jest.spyOn(console, 'warn').mockImplementation(() => {})
 jest.spyOn(console, 'error').mockImplementation(() => {})
 
-// Se seu código usa expo-asset em algum ponto:
 jest.mock('expo-asset', () => ({
   Asset: {
     fromModule: jest.fn(() => ({
@@ -15,6 +15,6 @@ jest.mock('expo-asset', () => ({
     })),
   },
 }))
+jest.mock('@react-native-async-storage/async-storage', () => mockAsyncStorage)
 
-// Timers previsíveis (útil p/ RN/RTL)
 jest.useRealTimers()

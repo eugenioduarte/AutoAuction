@@ -7,6 +7,7 @@ export const Colors = {
     secondary: '#FEEAEA',
     tertiary: '#2996F3',
     surface: '#FFFFFF',
+    background_color_modal: 'rgba(0,0,0,0.3)',
   },
 }
 

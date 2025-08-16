@@ -1,4 +1,3 @@
-// src/components/text/AppText.tsx
 import { useTheme } from '@/src/hooks/useTheme'
 import React from 'react'
 import { Text as RNText, StyleSheet, TextProps } from 'react-native'

@@ -2,18 +2,13 @@ module.exports = {
   preset: 'react-native',
   testMatch: ['**/?(*.)+(test).[jt]s?(x)'],
 
-  // Roda ANTES de qualquer import (crucial!)
   setupFiles: ['<rootDir>/jest.setupEarly.js'],
-
-  // Roda depois (RTL, spies, mocks diversos)
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
 
-  // Garante TS/JS via Babel
   transform: {
     '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest',
   },
 
-  // Permite transformar módulos RN/Expo necessários
   transformIgnorePatterns: [
     'node_modules/(?!(jest-)?react-native' +
       '|@react-native' +
@@ -21,6 +16,7 @@ module.exports = {
       '|@react-native-community' +
       '|expo($|/.*)' +
       '|expo-modules-core' +
+      '|expo-localization' +
       '|@expo(nent)?/.*' +
       '|@unimodules/.*' +
       '|unimodules' +
@@ -30,9 +26,19 @@ module.exports = {
 
   testEnvironment: 'jsdom',
 
-  // Mapeia QUALQUER import de expo para um mock
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
     '^expo($|/.*)': '<rootDir>/__mocks__/expoMock.js',
   },
+
+  collectCoverage: true,
+  collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}'],
+  // coverageThreshold: {
+  //   global: {
+  //     branches: 80,
+  //     functions: 80,
+  //     lines: 80,
+  //     statements: 80,
+  //   },
+  // },
 }
