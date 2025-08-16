@@ -8,7 +8,7 @@ export const navigatorManager = {
       navigationRef.navigate(NavigationScreenName.VehiclesList)
     }
   },
-  goToVehiclesDetailsScreen: () => {
+  goToVehiclesDetailsScreen: ({ id }: { id: string }) => {
     if (navigationRef.isReady()) {
       navigationRef.navigate(NavigationScreenName.VehiclesDetails)
     }

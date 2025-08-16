@@ -3,9 +3,10 @@ export const Colors = {
     text: '#33323C',
     light_text: '#ECEDF2',
     background: '#ECEDF2',
-    primary: '#FF7A30',
+    primary: '#2996F3',
     secondary: '#FEEAEA',
-    tertiary: '#465C88',
+    tertiary: '#2996F3',
+    surface: '#FFFFFF',
   },
 }
 
@@ -15,6 +16,8 @@ export const border = {
 }
 
 export const spacings = {
+  xTiny: 2,
+  xSmall: 4,
   small: 8,
   medium: 16,
   large: 24,
@@ -30,15 +33,15 @@ export const font = {
 export const typography = {
   titleLarge: {
     fontFamily: font.medium,
-    fontSize: 22,
+    fontSize: 18,
     fontWeight: '500',
     letterSpacing: 0.15,
     lineHeight: 24,
   },
   titleMedium: {
     fontFamily: font.medium,
-    fontSize: 18,
-    fontWeight: '500',
+    fontSize: 16,
+    fontWeight: '400',
     letterSpacing: 0.15,
     lineHeight: 20,
   },

@@ -1,4 +1,4 @@
-import { Vehicle } from '../types/vehicle'
+import { Vehicle } from '../types/vehicle.type'
 
 export async function fetchVehicles(simulateError = false): Promise<Vehicle[]> {
   await new Promise((resolve) => setTimeout(resolve, 700))
