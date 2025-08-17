@@ -10,6 +10,7 @@ interface VehiclesState {
   filteredItems: Vehicle[]
   status: Status
   error?: string
+  isFilterActive?: boolean
   setStatus: (status: Status) => void
   setError: (error?: string) => void
   setItems: (items: Vehicle[]) => void
@@ -17,6 +18,7 @@ interface VehiclesState {
   toggleFavourite: (id: string) => void
   vehicleIsFavouriteById: (id: string) => boolean
   setFilteredItems: (filtered: Vehicle[]) => void
+  setFilterActive: (isActive: boolean) => void
 }
 
 export const useVehiclesStore = create<VehiclesState>()(
@@ -39,6 +41,10 @@ export const useVehiclesStore = create<VehiclesState>()(
       vehicleIsFavouriteById: (id: string) =>
         !!get().items.find((item) => item.id === id)?.favourite,
       setFilteredItems: (filtered) => set({ filteredItems: filtered }),
+      setFilterActive: (isActive: boolean) =>
+        set(() => ({
+          isFilterActive: isActive,
+        })),
     }),
     {
       name: 'vehicles-store',

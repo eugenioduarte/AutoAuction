@@ -18,6 +18,31 @@ import { useVehiclesDetailsScreen } from './useVehiclesDetailsScreen'
 
 const SIZE_ICON = 30
 
+const renderDescriptionItem = (
+  {
+    item: { label, value, icon: Icon },
+  }: {
+    item: {
+      label: string
+      value: string | number | undefined
+      icon: React.FC<any>
+    }
+  },
+  styles: ReturnType<typeof getStyles>,
+) => (
+  <View style={styles.item}>
+    <Icon width={SIZE_ICON} height={SIZE_ICON} />
+    <View style={styles.textContainer}>
+      <Text variant="bodySmall" style={styles.textLabel}>
+        {label}
+      </Text>
+      <Text variant="titleLarge" style={styles.textValue}>
+        {value?.toString() || ''}
+      </Text>
+    </View>
+  </View>
+)
+
 const VehiclesDetailsScreen = ({
   route,
 }: {
@@ -53,25 +78,7 @@ const VehiclesDetailsScreen = ({
         numColumns={2}
         keyExtractor={(_, index) => index.toString()}
         columnWrapperStyle={styles.row}
-        renderItem={({ item: { label, value, icon: Icon } }) => (
-          <View style={styles.item}>
-            <Icon width={SIZE_ICON} height={SIZE_ICON} />
-            <View style={styles.textContainer}>
-              <Text
-                variant="bodySmall"
-                style={{ color: theme.colors.grey, textAlign: 'center' }}
-              >
-                {label}
-              </Text>
-              <Text
-                variant="titleLarge"
-                style={{ textAlign: 'center', color: theme.colors.primary }}
-              >
-                {value}
-              </Text>
-            </View>
-          </View>
-        )}
+        renderItem={(item) => renderDescriptionItem(item, styles)}
         ListHeaderComponent={
           <ImageCar
             width={sizes.WIDTH_SCREEN}
@@ -116,4 +123,6 @@ const getStyles = (theme: Theme) =>
       aspectRatio: 1.5,
       marginBottom: theme.spacings.small,
     },
+    textLabel: { color: theme.colors.grey, textAlign: 'center' },
+    textValue: { textAlign: 'center', color: theme.colors.primary },
   })

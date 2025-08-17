@@ -1,6 +1,6 @@
 import { useTheme } from '@/src/hooks/useTheme'
 import React from 'react'
-import { Text as RNText, StyleSheet, TextProps } from 'react-native'
+import { Text as RNText, TextProps, TextStyle } from 'react-native'
 
 export type TextVariant =
   | 'titleLarge'
@@ -15,11 +15,7 @@ export type AppTextProps = TextProps & {
 const Text = ({ variant = 'bodyLarge', style, ...props }: AppTextProps) => {
   const { typography } = useTheme()
 
-  return <RNText style={[styles.base, typography[variant], style]} {...props} />
+  return <RNText style={[typography[variant] as TextStyle, style]} {...props} />
 }
-
-const styles = StyleSheet.create({
-  base: {},
-})
 
 export default Text

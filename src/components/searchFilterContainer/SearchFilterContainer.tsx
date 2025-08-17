@@ -43,15 +43,17 @@ const SearchFilterContainer = () => {
     [items, setFilteredItems],
   )
 
+  const handleSearchTextChange = (text: string) => {
+    setSearchText(text)
+    handleSearchChange(text)
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.textInputContainer}>
         <TextInput
           placeholder={t('searchFilterContainer.searchVehicles')}
-          onChangeText={(text) => {
-            setSearchText(text)
-            handleSearchChange(text)
-          }}
+          onChangeText={handleSearchTextChange}
           value={searchText}
           style={styles.textInput}
         />

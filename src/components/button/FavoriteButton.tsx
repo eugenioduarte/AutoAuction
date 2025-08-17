@@ -6,7 +6,11 @@ import { Theme } from '@/src/types/theme.type'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 
-const FavoriteButton = ({ vehicleId }: { vehicleId: string }) => {
+type FavoriteButtonProps = {
+  vehicleId: string
+}
+
+const FavoriteButton = ({ vehicleId }: FavoriteButtonProps) => {
   const isFavorite = useVehiclesStore((state) =>
     state.vehicleIsFavouriteById(vehicleId),
   )
@@ -18,12 +22,18 @@ const FavoriteButton = ({ vehicleId }: { vehicleId: string }) => {
     toggleFavourite(vehicleId)
   }
 
+  const iconStrokeColor = isFavorite ? theme.colors.surface : theme.colors.text
+
   return (
-    <View style={styles.container} onTouchEnd={handleAddToFavourites}>
+    <View
+      style={styles.container}
+      onTouchEnd={handleAddToFavourites}
+      testID="favorite-button-container"
+    >
       <FavoriteIcon
         width={20}
         height={20}
-        stroke={isFavorite ? theme.colors.surface : theme.colors.text}
+        stroke={iconStrokeColor}
         strokeWidth={2}
       />
     </View>

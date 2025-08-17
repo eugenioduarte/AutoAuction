@@ -3,11 +3,12 @@ import { sizes } from '@/src/constants/sizes'
 import { useTheme } from '@/src/hooks/useTheme'
 import { Theme } from '@/src/types/theme.type'
 import React from 'react'
-import { Image, StyleSheet } from 'react-native'
+import { Image, ImageStyle, StyleProp, StyleSheet } from 'react-native'
 
 type ImageCarProps = {
   width?: number
   height?: number
+  style?: StyleProp<ImageStyle>
 }
 
 const ImageCar = ({
@@ -16,14 +17,15 @@ const ImageCar = ({
   style,
 }: ImageCarProps & { style?: object }) => {
   const theme = useTheme()
-  const styles = getStyles(theme)
+  const styles = getStyles(theme, width, height)
 
   return (
     <Image
+      testID="car-image"
       source={{
         uri: placeholders.CAR_PLACEHOLDER_IMAGE,
       }}
-      style={[styles.carImage, { width, height }, style]}
+      style={[styles.carImage, styles.dynamicSize, style]}
       resizeMode="cover"
     />
   )
@@ -31,10 +33,18 @@ const ImageCar = ({
 
 export default ImageCar
 
-const getStyles = ({ spacings, border }: Theme) =>
+const getStyles = (
+  { spacings, border }: Theme,
+  width: number,
+  height: number,
+) =>
   StyleSheet.create({
     carImage: {
       marginRight: spacings.small,
       borderRadius: border.radius,
+    },
+    dynamicSize: {
+      width,
+      height,
     },
   })

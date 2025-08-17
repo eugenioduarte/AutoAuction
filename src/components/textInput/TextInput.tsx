@@ -2,7 +2,9 @@ import { useTheme } from '@/src/hooks/useTheme'
 import { Theme } from '@/src/types/theme.type'
 import React, { useState } from 'react'
 import {
+  NativeSyntheticEvent,
   StyleSheet,
+  TextInputFocusEventData,
   TextInputProps,
   TextInput as TextInputRN,
 } from 'react-native'
@@ -12,18 +14,22 @@ const TextInput = (props: TextInputProps) => {
   const styles = getStyles(theme)
   const [isFocused, setIsFocused] = useState(false)
 
+  const handleFocus = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+    setIsFocused(true)
+    props.onFocus?.(e)
+  }
+
+  const handleBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+    setIsFocused(false)
+    props.onBlur?.(e)
+  }
+
   return (
     <TextInputRN
       {...props}
       style={[styles.input, props.style, isFocused && styles.inputFocused]}
-      onFocus={(e) => {
-        setIsFocused(true)
-        props.onFocus?.(e)
-      }}
-      onBlur={(e) => {
-        setIsFocused(false)
-        props.onBlur?.(e)
-      }}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
     />
   )
 }
@@ -41,7 +47,6 @@ const getStyles = (theme: Theme) =>
       paddingVertical: theme.spacings.small,
     },
     inputFocused: {
-      borderColor: theme.colors.primary,
       borderWidth: theme.border.size + 2,
     },
   })

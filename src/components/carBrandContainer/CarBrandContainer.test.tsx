@@ -47,6 +47,7 @@ jest.mock('../../store/vehicles.store', () => ({
 beforeEach(() => {
   ;(useVehiclesStore as unknown as jest.Mock).mockReturnValue({
     items: dummyItems,
+    filteredItems: dummyItems,
     setFilteredItems: mockedSetFilteredItems,
   })
   mockedSetFilteredItems.mockClear()

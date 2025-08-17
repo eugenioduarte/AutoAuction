@@ -30,7 +30,7 @@ type FilterBSheetProps = {
 const { height } = Dimensions.get('window')
 
 const FilterBSheet = ({ visible, setVisible }: FilterBSheetProps) => {
-  const { items, setFilteredItems } = useVehiclesStore()
+  const { items, setFilteredItems, setFilterActive } = useVehiclesStore()
   const [state, dispatch] = useReducer(filterReducer, initialFilterState)
   const theme = useTheme()
   const styles = getStyles(theme)
@@ -112,33 +112,22 @@ const FilterBSheet = ({ visible, setVisible }: FilterBSheetProps) => {
 
     if (state.mileageRange[0] || state.mileageRange[1]) {
       const min = parseInt(state.mileageRange[0]) || 0
-    }
-
-    if (state.yearRange[0] || state.yearRange[1]) {
-      const min = parseInt(state.yearRange[0]) || 0
-      const max = parseInt(state.yearRange[1]) || new Date().getFullYear()
-      filtered = filtered.filter((v) => v.year >= min && v.year <= max)
-    }
-
-    if (state.mileageRange[0] || state.mileageRange[1]) {
-      const min = parseInt(state.mileageRange[0]) || 0
       const max = parseInt(state.mileageRange[1]) || Infinity
       filtered = filtered.filter((v) => v.mileage >= min && v.mileage <= max)
     }
 
-    if (state.auctionDateRange[0] || state.auctionDateRange[1]) {
-      const minDate = state.auctionDateRange[0]
-        ? new Date(state.auctionDateRange[0])
-        : new Date(0)
-      const maxDate = state.auctionDateRange[1]
-        ? new Date(state.auctionDateRange[1])
-        : new Date(8640000000000000)
-      filtered = filtered.filter((v) => {
-        const d = new Date(v.auctionDateTime)
-        return d >= minDate && d <= maxDate
-      })
-    }
+    if (state.startingBidRange[0] || state.startingBidRange[1]) {
+      const min = state.startingBidRange[0]
+        ? Number(state.startingBidRange[0].replace(/\D/g, ''))
+        : 0
+      const max = state.startingBidRange[1]
+        ? Number(state.startingBidRange[1].replace(/\D/g, ''))
+        : Infinity
 
+      filtered = filtered.filter(
+        (v) => v.startingBid >= min && v.startingBid <= max,
+      )
+    }
     if (state.startingBidRange[0] || state.startingBidRange[1]) {
       const min = parseFloat(state.startingBidRange[0]) || 0
       const max = parseFloat(state.startingBidRange[1]) || Infinity
@@ -148,11 +137,13 @@ const FilterBSheet = ({ visible, setVisible }: FilterBSheetProps) => {
     }
 
     setFilteredItems(filtered)
+    setFilterActive(true)
     handleClose()
   }
 
   const handleClearFilters = () => {
     dispatch({ type: 'RESET' })
+    setFilterActive(false)
     setFilteredItems(items)
   }
 
@@ -183,7 +174,7 @@ const FilterBSheet = ({ visible, setVisible }: FilterBSheetProps) => {
                 <Text variant="titleLarge">{translations.filter}</Text>
                 <Button
                   onPress={handleClose}
-                  style={{ width: 0 }}
+                  style={styles.buttonClose}
                   variant={BUTTON_VARIANT.text}
                 >
                   <CloseIcon
@@ -373,4 +364,5 @@ const getStyles = (theme: Theme) =>
       alignItems: 'center',
       marginBottom: theme.spacings.large,
     },
+    buttonClose: { width: 0 },
   })

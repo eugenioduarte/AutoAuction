@@ -1,4 +1,3 @@
-import { FavoriteIcon } from '@/assets/icons'
 import { logoImage } from '@/assets/images'
 import { sizes } from '@/src/constants/sizes'
 import { useTheme } from '@/src/hooks/useTheme'
@@ -18,10 +17,6 @@ const Header = () => {
     navigatorManager.goToVehiclesListScreen()
   }
 
-  const handleNavigateToMenu = () => {
-    navigatorManager.openDrawer()
-  }
-
   return (
     <View style={styles.container}>
       <Button
@@ -30,30 +25,14 @@ const Header = () => {
         variant={BUTTON_VARIANT.text}
         style={styles.logoButton}
       >
-        <>
-          <Image
-            source={logoImage}
-            style={styles.logoImage}
-            resizeMode="contain"
-          />
-          <Text variant="bodyLarge" style={styles.text}>
-            Challenge - Eugênio Silva
-          </Text>
-        </>
-      </Button>
-
-      <Button
-        testID="header-menu-btn"
-        onPress={handleNavigateToMenu}
-        variant={BUTTON_VARIANT.text}
-        style={styles.logoButton}
-      >
-        <FavoriteIcon
-          width={sizes.ICON_SIZE_DEFAULT}
-          height={sizes.ICON_SIZE_DEFAULT}
-          stroke={theme.colors.primary}
-          strokeWidth={2}
+        <Image
+          source={logoImage}
+          style={styles.logoImage}
+          resizeMode="contain"
         />
+        <Text variant="bodyLarge" style={styles.text}>
+          Challenge - Eugênio Silva
+        </Text>
       </Button>
     </View>
   )

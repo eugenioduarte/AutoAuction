@@ -49,5 +49,8 @@
   "auction": {
     "endsInSimple": "Ends in: {{days}}d {{hours}}h {{minutes}}m",
     "endedSimple": "Ended: {{days}}d {{hours}}h {{minutes}}m ago"
+  },
+  "EmptyStateContainer": {
+    "noVehiclesFound": "Ops! No vehicles found for the selected filters."
   }
 }

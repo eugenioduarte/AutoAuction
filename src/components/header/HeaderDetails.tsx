@@ -15,7 +15,7 @@ const HeaderDetails = ({
   onToggleFavourite: () => void
 }) => {
   const theme = useTheme()
-  const styles = getStyles(theme)
+  const styles = getStyles(theme, isFavourite)
 
   const handleGoBack = () => {
     navigatorManager.goBack()
@@ -26,34 +26,29 @@ const HeaderDetails = ({
     removeFromFavorites: t('HeaderDetails.removeFromFavorites'),
   }
 
+  const favouriteLabel = isFavourite
+    ? translations.removeFromFavorites
+    : translations.addToFavorites
+
+  const iconStrokeColor = isFavourite ? theme.colors.primary : theme.colors.grey
+
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={handleGoBack}>
+      <TouchableOpacity testID="header-back-button" onPress={handleGoBack}>
         <Chevron />
       </TouchableOpacity>
       <TouchableOpacity
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
+        testID="header-fav-button"
+        style={styles.favButton}
         onPress={onToggleFavourite}
       >
-        <Text
-          variant="bodySmall"
-          style={{
-            marginRight: theme.spacings.small,
-            color: isFavourite ? theme.colors.primary : theme.colors.grey,
-          }}
-        >
-          {isFavourite
-            ? translations.removeFromFavorites
-            : translations.addToFavorites}
+        <Text variant="bodySmall" style={styles.favButtonText}>
+          {favouriteLabel}
         </Text>
         <FavoriteIcon
           width={20}
           height={20}
-          stroke={isFavourite ? theme.colors.primary : theme.colors.grey}
+          stroke={iconStrokeColor}
           strokeWidth={3}
         />
       </TouchableOpacity>
@@ -63,7 +58,7 @@ const HeaderDetails = ({
 
 export default HeaderDetails
 
-const getStyles = (theme: Theme) =>
+const getStyles = (theme: Theme, isFavourite: boolean) =>
   StyleSheet.create({
     container: {
       paddingTop: theme.spacings.large,
@@ -71,5 +66,14 @@ const getStyles = (theme: Theme) =>
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-between',
+    },
+    favButton: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    favButtonText: {
+      marginRight: theme.spacings.small,
+      color: isFavourite ? theme.colors.primary : theme.colors.grey,
     },
   })

@@ -1,5 +1,3 @@
-// src/hooks/useVehiclesDetailsScreen.ts
-
 import { Vehicle } from '@/src/types/vehicle.type'
 import { useVehiclesStore } from '../../store/vehicles.store'
 

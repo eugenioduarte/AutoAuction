@@ -4,7 +4,11 @@ import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import Text from '../text/Text'
 
-const Badge = ({ title }: { title: string }) => {
+type BadgeProps = {
+  title: string
+}
+
+const Badge = ({ title }: BadgeProps) => {
   const theme = useTheme()
   const styles = getStyles(theme)
 

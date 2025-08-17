@@ -33,12 +33,12 @@ module.exports = {
 
   collectCoverage: true,
   collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}'],
-  // coverageThreshold: {
-  //   global: {
-  //     branches: 80,
-  //     functions: 80,
-  //     lines: 80,
-  //     statements: 80,
-  //   },
-  // },
+  coverageThreshold: {
+    global: {
+      branches: 10,
+      functions: 10,
+      lines: 10,
+      statements: 10,
+    },
+  },
 }

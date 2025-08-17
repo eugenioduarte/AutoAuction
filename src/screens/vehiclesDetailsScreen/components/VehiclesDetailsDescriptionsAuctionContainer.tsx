@@ -33,25 +33,19 @@ const VehiclesDetailsDescriptionsAuctionContainer = ({
 
   return (
     <View style={styles.container}>
-      <Text
-        variant="bodySmall"
-        style={{ color: theme.colors.grey, textAlign: 'center' }}
-      >
+      <Text variant="bodySmall" style={styles.textLabel}>
         {translations.auctionDate}
       </Text>
       <Text variant="titleLarge" style={styles.title}>
         {auctionStatusText}
       </Text>
-      <Text
-        variant="bodySmall"
-        style={{ color: theme.colors.grey, textAlign: 'center' }}
-      >
+      <Text variant="bodySmall" style={styles.textLabel}>
         {translations.startingBid}
       </Text>
       <Text variant="titleLarge" style={styles.title}>
         {startingBidFormattedValue}
       </Text>
-      <Button style={{ width: '90%' }} disabled={isAuctionEndedStatus}>
+      <Button style={styles.button} disabled={isAuctionEndedStatus}>
         {isAuctionEndedStatus ? translations.bidEnded : translations.bidNow}
       </Button>
     </View>
@@ -72,30 +66,16 @@ const getStyles = (theme: Theme, isAuctionEnded: boolean) =>
       borderRadius: theme.border.radius,
       marginHorizontal: theme.spacings.xSmall,
     },
-    item: {
-      flex: 1,
-      marginHorizontal: theme.spacings.xSmall,
-      padding: theme.spacings.small,
-      borderWidth: 1,
-      borderColor: theme.colors.primary,
-      borderRadius: theme.border.radius,
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      gap: theme.spacings.xSmall,
-      height: 120,
-    },
-    textContainer: {
-      flexDirection: 'column',
-    },
-    carImage: {
-      width: '100%',
-      height: undefined,
-      aspectRatio: 1.5,
-      marginBottom: theme.spacings.small,
-    },
     title: {
       color: isAuctionEnded ? theme.colors.warning_text : theme.colors.primary,
       textAlign: 'center',
       marginBottom: theme.spacings.large,
+    },
+    textLabel: {
+      color: theme.colors.grey,
+      textAlign: 'center',
+    },
+    button: {
+      width: '90%',
     },
   })

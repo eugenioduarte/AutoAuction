@@ -1,4 +1,3 @@
-// src/components/header/Header.test.tsx
 import { navigatorManager } from '@/src/navigation/navigatorManager'
 import { fireEvent, render } from '@testing-library/react-native'
 import React from 'react'
@@ -59,7 +58,7 @@ describe('Header', () => {
     jest.clearAllMocks()
   })
 
-  it('renderiza o logo com tamanho e source corretos', () => {
+  it('renders the logo with correct size and source', () => {
     const { UNSAFE_getByType } = render(<Header />)
     const img = UNSAFE_getByType(Image)
     expect(img.props.source).toBe('logoImage')
@@ -68,15 +67,9 @@ describe('Header', () => {
     )
   })
 
-  it('navega para a lista ao pressionar o logo', () => {
+  it('navigates to the list when logo is pressed', () => {
     const { getByTestId } = render(<Header />)
     fireEvent.press(getByTestId('header-logo-btn'))
     expect(navigatorManager.goToVehiclesListScreen).toHaveBeenCalledTimes(1)
-  })
-
-  it('abre o menu ao pressionar o botão de menu', () => {
-    const { getByTestId } = render(<Header />)
-    fireEvent.press(getByTestId('header-menu-btn'))
-    expect(navigatorManager.openDrawer).toHaveBeenCalledTimes(1)
   })
 })
