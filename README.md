@@ -5,7 +5,6 @@
 
 Mobile challenge application built with React Native (Expo), designed for browsing and managing auction vehicles.  
 
----
 
 ## 🚀 Technologies
 
@@ -14,12 +13,8 @@ Mobile challenge application built with React Native (Expo), designed for browsi
 - [Zustand](https://github.com/pmndrs/zustand)
 - [AsyncStorage](https://react-native-async-storage.github.io/async-storage/)
 - [React Navigation](https://reactnavigation.org/)
-- [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/)
 - [Testing Library](https://testing-library.com/)
-- [Jest](https://jestjs.io/)
-- [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/) + [Husky](https://typicode.github.io/husky)
 
----
 
 ## 📦 Installation
 
@@ -37,7 +32,6 @@ yarn / npm install
 npx expo start
 ````
 
----
 
 ## 📱 Available Scripts
 
