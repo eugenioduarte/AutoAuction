@@ -112,7 +112,7 @@ const getStyles = (theme: Theme) =>
       alignItems: 'center',
       justifyContent: 'space-between',
       gap: theme.spacings.xSmall,
-      height: 120,
+      height: 90,
     },
     textContainer: {
       flexDirection: 'column',
