@@ -1,10 +1,17 @@
-
+## 2025-08-17
 # AutoAuction
 
 ![Project Preview](https://drive.google.com/uc?export=view&id=1QPJMTfk6NiYWgswb47cSkuK1WyKaKd5P)
 
 Mobile challenge application built with React Native (Expo), designed for browsing and managing auction vehicles.  
 
+## 📖 Additional Notes
+
+Builds: the app currently runs through Expo Go. A next step would be to generate native builds (APK for Android, IPA for iOS) to simplify testing and distribution.
+
+E2E Testing: so far only unit and integration tests are included. Adding end-to-end testing would improve coverage — using Cypress (if keeping Expo) or Detox (if migrating to bare workflow) could be considered.
+
+Quality workflow: Husky is already set up to run checks before commits. As a further improvement, running these validations automatically before Pull Requests are merged (via GitHub Actions) would enforce quality at the PR level.
 
 ## 🚀 Technologies
 
