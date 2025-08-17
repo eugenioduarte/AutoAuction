@@ -23,7 +23,6 @@ const SearchFilterContainer = () => {
   const handleFilterPress = () => {
     setHasResultWasNotFound(false)
     setSearchText('')
-    setFilteredItems(items)
     setFilterModalVisible(!filterModalVisible)
   }
 

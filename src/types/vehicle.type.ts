@@ -1,10 +1,10 @@
-export type FuelType = 'Gasoline' | 'Diesel' | 'Electric' | 'Hybrid'
+export type FuelType = 'petrol' | 'diesel'
 
 export interface Vehicle {
   id: string
   make: string
   model: string
-  engineSize: number
+  engineSize: string
   year: number
   mileage: number
   startingBid: number

@@ -9,7 +9,7 @@ import { useVehiclesStore } from '../../../store/vehicles.store'
 import VehiclesListCard from './VehiclesListCard'
 
 const VehiclesList = () => {
-  const { items, status, loadMore } = useGetVehiclesAvailable()
+  const { items, loadMore } = useGetVehiclesAvailable()
   const { filteredItems, isFilterActive } = useVehiclesStore()
   const theme = useTheme()
   const styles = getStyles(theme)

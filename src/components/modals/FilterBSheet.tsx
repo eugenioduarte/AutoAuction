@@ -75,7 +75,7 @@ const FilterBSheet = ({ visible, setVisible }: FilterBSheetProps) => {
     () =>
       Array.from(new Set(items.map((v) => v.engineSize)))
         .filter(Boolean)
-        .sort((a, b) => a - b),
+        .sort((a, b) => Number(a) - Number(b)),
     [items],
   )
   const fuelTypes = useMemo(

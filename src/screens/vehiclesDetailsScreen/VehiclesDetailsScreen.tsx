@@ -36,7 +36,7 @@ const renderDescriptionItem = (
       <Text variant="bodySmall" style={styles.textLabel}>
         {label}
       </Text>
-      <Text variant="titleLarge" style={styles.textValue}>
+      <Text variant="bodyLarge" style={styles.textValue}>
         {value?.toString() || ''}
       </Text>
     </View>
