@@ -1,10 +1,9 @@
-````markdown
+
 # AutoAuction
 
 ![Project Preview](https://drive.google.com/uc?export=view&id=1QPJMTfk6NiYWgswb47cSkuK1WyKaKd5P)
 
-Mobile application built with **React Native (Expo)** for managing and browsing auction vehicles.  
-It uses **Zustand** for state management with **AsyncStorage persistence**, and provides custom hooks for data fetching and pagination.
+Mobile challenge application built with React Native (Expo), designed for browsing and managing auction vehicles.  
 
 ---
 
@@ -32,10 +31,10 @@ git clone https://github.com/your-username/autoauction.git
 cd autoauction
 
 # Install dependencies
-npm install
+yarn / npm install
 
 # Start the app with Expo
-npm start
+npx expo start
 ````
 
 ---
